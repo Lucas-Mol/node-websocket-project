@@ -1,4 +1,11 @@
-import { documentCollection } from "./dbConnection.js";
+import { documentCollection } from "../config/dbConnection.js";
+
+function createDocument(name) {
+    return documentCollection.insertOne({
+        name,
+        text: ""
+    });
+}
 
 function getAllDocuments() {
     return documentCollection.find().toArray();
@@ -6,13 +13,6 @@ function getAllDocuments() {
 
 function findDocument(name) {
     return documentCollection.findOne({ name });
-}
-
-function createDocument(name) {
-    return documentCollection.insertOne({
-        name,
-        text: ""
-    });
 }
 
 function updateDocument(name, text) {
@@ -27,4 +27,10 @@ function removeDocument(name) {
     return documentCollection.deleteOne({ name });
 }
 
-export { findDocument, updateDocument, getAllDocuments, createDocument, removeDocument };
+export {    
+    findDocument,
+    updateDocument,
+    getAllDocuments,
+    createDocument,
+    removeDocument 
+};

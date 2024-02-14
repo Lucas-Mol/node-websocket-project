@@ -13,13 +13,13 @@ function emitTextEditorTyping(typingDTO) {
     socket.emit("text_editor_typing", typingDTO);
 }
 
-socket.on("text_editor_sharing", (text) => {
-    updateTextEditor(text);
-});
-
 function emitRemoveDocument(documentName) {
     socket.emit("remove_document", documentName);
 }
+
+socket.on("text_editor_sharing", (text) => {
+    updateTextEditor(text);
+});
 
 socket.on("remove_document_success", (documentName) => {
     alertAndRedirectToMainPage(documentName);
