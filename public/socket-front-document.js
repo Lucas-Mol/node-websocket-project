@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { updateTextEditor } from "./document.js";
+import { alertAndRedirectToMainPage, updateTextEditor } from "./document.js";
 
 const socket = io();
 
@@ -17,4 +17,12 @@ socket.on("text_editor_sharing", (text) => {
     updateTextEditor(text);
 });
 
-export { selectDocument, emitTextEditorTyping };
+function emitRemoveDocument(documentName) {
+    socket.emit("remove_document", documentName);
+}
+
+socket.on("remove_document_success", (documentName) => {
+    alertAndRedirectToMainPage(documentName);
+});
+
+export { selectDocument, emitTextEditorTyping, emitRemoveDocument };

@@ -1,14 +1,14 @@
 /* eslint-disable no-undef */
-import { emitTextEditorTyping, selectDocument } from "./socket-front-document.js";
+import { emitRemoveDocument, emitTextEditorTyping, selectDocument } from "./socket-front-document.js";
 
+const textEditor = document.getElementById("text-editor");
+const btnRemoveDocument = document.getElementById("btn-remove-document");
+const documentTitle = document.getElementById("document-title");
 const params = new URLSearchParams(window.location.search);
 const documentName = params.get("name");
-const documentTitle = document.getElementById("document-title");
 documentTitle.innerHTML = documentName || "Untitled Document";
 
 selectDocument(documentName);
-
-const textEditor = document.getElementById("text-editor");
 
 textEditor.addEventListener("keyup", () => {
     emitTextEditorTyping({
@@ -16,8 +16,19 @@ textEditor.addEventListener("keyup", () => {
         documentName});
 });
 
+btnRemoveDocument.addEventListener("click", () => {
+    emitRemoveDocument(documentName);
+});
+
 function updateTextEditor(text) {
     textEditor.value = text;
 }
 
-export { updateTextEditor };
+function alertAndRedirectToMainPage(name) {
+    if(documentName === name) {
+        alert(`The document named ${name} was removed`);
+        window.location.href = "/";
+    }
+}
+
+export { updateTextEditor, alertAndRedirectToMainPage };
