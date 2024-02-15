@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import "./socket-front-index.js";
-import { emitAddDocument } from "./socket-front-index.js";
+import "./socket-index.js";
+import { emitAddDocument } from "./socket-index.js";
 
 const documents = document.getElementById("list-documents");
 const form = document.getElementById("form-add-document");
@@ -17,7 +17,7 @@ function insertDocumentLink(documentName) {
     documents.innerHTML += `
     <a
         id="document-${documentName}"
-        href="document.html?name=${documentName}" 
+        href="/document?name=${documentName}" 
         class="list-group-item list-group-item-action"
     >
         ${documentName}

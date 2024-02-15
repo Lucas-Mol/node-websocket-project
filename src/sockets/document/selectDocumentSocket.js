@@ -1,4 +1,4 @@
-import { findDocument } from "../services/documentsService.js";
+import { findDocument } from "../../services/documentsService.js";
 
 function selectDocumentSocket(socket) {
     socket.on("select_document", async (documentName, replyText) => {

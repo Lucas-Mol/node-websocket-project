@@ -1,9 +1,10 @@
 import io from "../server.js";
-import addNewDocumentSocket from "./addNewDocumentSocket.js";
-import getAllDocumentsSocket from "./getAllDocumentsSocket.js";
-import removeDocumentSocket from "./removeDocumentSocket.js";
-import selectDocumentSocket from "./selectDocumentSocket.js";
-import textEditorTypingSocket from "./textEditorTypingSocket.js";
+import addNewDocumentSocket from "./index/addNewDocumentSocket.js";
+import getAllDocumentsSocket from "./index/getAllDocumentsSocket.js";
+import removeDocumentSocket from "./document/removeDocumentSocket.js";
+import selectDocumentSocket from "./document/selectDocumentSocket.js";
+import textEditorTypingSocket from "./document/textEditorTypingSocket.js";
+import signUpUserSocket from "./signup/signUpUserSocket.js";
 
 io.on("connection", (socket) => {
     console.log("Client connected! ID: ", socket.id);
@@ -17,6 +18,7 @@ io.on("connection", (socket) => {
     removeDocumentSocket(socket, io);
     selectDocumentSocket(socket);
     textEditorTypingSocket(socket);
+    signUpUserSocket(socket);
 });
 
 

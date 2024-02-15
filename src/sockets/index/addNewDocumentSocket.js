@@ -1,4 +1,4 @@
-import { createDocument, findDocument } from "../services/documentsService.js";
+import { createDocument, findDocument } from "../../services/documentsService.js";
 
 function addNewDocumentSocket(socket, io) {
     socket.on("add_new_document", async (documentName) => {

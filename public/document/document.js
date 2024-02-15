@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { emitRemoveDocument, emitTextEditorTyping, selectDocument } from "./socket-front-document.js";
+import { emitRemoveDocument, emitTextEditorTyping, selectDocument } from "./socket-document.js";
 
 const textEditor = document.getElementById("text-editor");
 const btnRemoveDocument = document.getElementById("btn-remove-document");

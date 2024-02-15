@@ -1,4 +1,4 @@
-import { updateDocument } from "../services/documentsService.js";
+import { updateDocument } from "../../services/documentsService.js";
 
 function textEditorTypingSocket(socket) {
     socket.on("text_editor_typing", async ({ text, documentName }) => {

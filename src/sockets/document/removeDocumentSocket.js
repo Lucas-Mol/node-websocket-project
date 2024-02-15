@@ -1,4 +1,4 @@
-import { removeDocument } from "../services/documentsService.js";
+import { removeDocument } from "../../services/documentsService.js";
 
 function removeDocumentSocket(socket, io) {
     socket.on("remove_document", async (documentName) => {
