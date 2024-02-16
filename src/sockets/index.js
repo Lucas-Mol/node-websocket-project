@@ -5,6 +5,7 @@ import removeDocumentSocket from "./document/removeDocumentSocket.js";
 import selectDocumentSocket from "./document/selectDocumentSocket.js";
 import textEditorTypingSocket from "./document/textEditorTypingSocket.js";
 import signUpUserSocket from "./signup/signUpUserSocket.js";
+import authUserSocket from "./login/authUserSocket.js";
 
 io.on("connection", (socket) => {
     console.log("Client connected! ID: ", socket.id);
@@ -19,6 +20,7 @@ io.on("connection", (socket) => {
     selectDocumentSocket(socket);
     textEditorTypingSocket(socket);
     signUpUserSocket(socket);
+    authUserSocket(socket);
 });
 
 
