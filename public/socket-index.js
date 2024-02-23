@@ -1,8 +1,17 @@
 /* eslint-disable no-undef */
 
 import { insertDocumentLink, removeDocumentLink } from "./index.js";
+import { getCookie } from "./utils/cookiesUtils.js";
 
-const socket = io();
+const socket = io("/app", {
+    auth: {
+        token: getCookie("token")
+    }
+});
+
+socket.on("connect_error", () => {
+    window.location.href = "/login";
+});
 
 socket.emit("get_documents", (documents) => {
     documents.forEach(document => {

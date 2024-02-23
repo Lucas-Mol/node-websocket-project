@@ -7,6 +7,8 @@ const form = document.getElementById("form-signup");
 function resolveSignUpUser(success, message) {
     if(success) {
         alert(message || "Signed up successfully!");
+        defineCookie("token", jwt);
+        window.location.href = "/";
     } else {
         alert(message || "Signed up failed!");
     }

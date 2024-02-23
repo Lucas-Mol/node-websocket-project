@@ -4,11 +4,23 @@ import { emitRemoveDocument, emitTextEditorTyping, selectDocument } from "./sock
 const textEditor = document.getElementById("text-editor");
 const btnRemoveDocument = document.getElementById("btn-remove-document");
 const documentTitle = document.getElementById("document-title");
+const connectedUsersList = document.getElementById("connected-users");
 const params = new URLSearchParams(window.location.search);
 const documentName = params.get("name");
 documentTitle.innerHTML = documentName || "Untitled Document";
 
-selectDocument(documentName);
+function handleAuthSuccess(payload) {
+    selectDocument({ documentName, username: payload.username });
+}
+
+function updateUserInterface(documentUsers) {
+    connectedUsersList.innerHTML = "";
+    documentUsers.forEach(user => {
+        connectedUsersList.innerHTML += `
+            <li class="list-group-item">${user}</li>
+        `;
+    });
+}
 
 textEditor.addEventListener("keyup", () => {
     emitTextEditorTyping({
@@ -31,4 +43,4 @@ function alertAndRedirectToMainPage(name) {
     }
 }
 
-export { updateTextEditor, alertAndRedirectToMainPage };
+export { updateTextEditor, alertAndRedirectToMainPage, handleAuthSuccess, updateUserInterface };
